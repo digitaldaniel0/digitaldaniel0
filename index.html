@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>O Plus Cypher</title>
+<script>
+var codes = ['z', 'm', 'n', 'x', 'k', 'd', 'l', 'w', 'y', 'i', 'c', 'a', 'q', 'o', 'u', 'p', 'b', 'h', 'g', 'v', 't', 's', 'e', 'j', 'r', 'f', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '~', '`', ':', ';', '"', '\'', '[', ']', '{', '}', '|', '\'', '<', '>', ',', '.', '?', '/', ' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\n','']
+
+function encode() {
+  var before = document.getElementById("decodedText").value.toLowerCase()
+  var after = ''
+  for (var i = 0; i < before.length; i++) {
+  	var index = codes.indexOf(before.charAt(i));
+    if(index == -1) continue;
+    if(index < 10 ) after += '0'
+    after += index
+  }
+  document.getElementById("encodedText").value = after
+}
+
+function decode() {
+	var before = document.getElementById("decodedText").value
+  var after = ''
+  for (var i = 0; i < before.length; i+=2) {
+  	try {
+  		var index = parseInt(before.substring(i, i+2))
+   	 	after += codes[index] || ''
+    } catch(e){
+    	console.log(e.message)
+    }
+  }
+  document.getElementById("encodedText").value = after
+}
+
+function clearText() {
+  document.getElementById("encodedText").value = ""
+  document.getElementById("decodedText").value = ""
+}
+
+</script>
+</head>
+<body>
+<textarea id="decodedText"></textarea>
+    <button id="encodeButton" onclick="encode()">Encode</button>
+    <button id="decodeButton" onclick="decode()">Decode</button>
+    <button onclick="clearText()">Clear</button>
+    <textarea readonly id="encodedText"></textarea>
+</body>
+</html>
+  
